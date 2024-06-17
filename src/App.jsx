@@ -1,9 +1,17 @@
-function App() {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Home from "./components/Home";
+import SearchResult from "./components/SearchResult";
+import { AppContext } from "./utils/ContextApi";
+
+function App() {
   return (
-    <>
-      <h1 className="text-6xl font-bold underline">Hello world!</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/searchresult" element={<SearchResult />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
