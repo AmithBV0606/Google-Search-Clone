@@ -14,10 +14,6 @@ const SearchResult = () => {
     const { query, startIndex} = useParams();
     const { imageSearch } = useContext(Context)
 
-    useEffect(() => {
-        fetchSearchResults();
-      }, [query, startIndex, imageSearch])
-
     const fetchSearchResults = () => {
         let payload = {q: query, start: startIndex}
         if (imageSearch) {
@@ -30,11 +26,37 @@ const SearchResult = () => {
         })
     }
 
+    useEffect(() => {
+        fetchSearchResults();
+    }, [query, startIndex, imageSearch])
+
+    // If the result state is empty, we'll not be moving forward
+    if (!result) return 
+
+    const { items, queries, searchInformation } = result;
+
     return (
         <div className="flex flex-col min-h-[100vh]">
             <SearchResultHeader />
 
             <main className="grow p-[12px] pb-0 md:pr-5 md:pl-20">
+
+                <div className="flex text-sm text-[#70757a] mb-3">
+                    {`About ${searchInformation.formattedTotalResults} results in (${searchInformation.formattedSearchTime})`}
+                </div>
+
+                {!imageSearch ? (
+                    <>
+                        {items.map((item, index) =>(
+                            <SearchedItemTemplate key={index} data={item} />
+                        ))}
+                    </>) : (
+                        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6">
+                            {items.map((item, index) =>(
+                                <SearchedImageItemTemplate key={index} data={item} />
+                            ))}
+                        </div>)
+                }
 
             </main>
 
