@@ -50,12 +50,14 @@ const SearchResult = () => {
                         {items.map((item, index) =>(
                             <SearchedItemTemplate key={index} data={item} />
                         ))}
-                    </>) : (
-                        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6">
-                            {items.map((item, index) =>(
-                                <SearchedImageItemTemplate key={index} data={item} />
-                            ))}
-                        </div>)
+                    </>
+                    ) : (
+                    <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4">
+                        {items.map((item, index) =>(
+                            <SearchedImageItemTemplate key={index} data={item} />
+                        ))}
+                    </div>
+                    )
                 }
 
             </main>
