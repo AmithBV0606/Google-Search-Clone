@@ -11,7 +11,7 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-col md:flex-row py-3 md:py-0 md:px-[15px] justify-between">
-                <div className="flex justify-center">
+                <div className="flex justify-center md:gap-0">
                     {quickLinks.map((menu, index) => (
                         <span 
                             key={index}
